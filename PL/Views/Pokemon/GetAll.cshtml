@@ -1,0 +1,371 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@* https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0 *@
+
+
+<script src="~/Scripts/jquery-3.7.0.slim.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" href="~/css/Pokemon.css">
+
+<style> 
+    /* From Uiverse.io by vamsidevendrakumar */
+    .card {
+        width: 300px;
+        height: 200px;
+        perspective: 1000px;
+    }
+
+    .card-inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.999s;
+    }
+
+    .card:hover .card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+    }
+
+    .card-front {
+        color: #fff;
+        display: flex;
+        align-items: center;
+
+        border-radius: 10px;
+        justify-content: center;
+        font-size: 24px;
+        transform: rotateY(0deg);
+    }
+
+    .card-back {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        justify-content: center;
+        font-size: 24px;
+        transform: rotateY(180deg);
+    }
+
+</style>
+
+
+
+
+
+<nav>
+    <button id="btn-anterior" disabled="true">Anterior</button>
+    <span id="numero-pagina">1</span>
+    <button id="btn-siguiente">Siguiente</button>
+</nav>
+
+
+
+
+
+
+<label for="lista">Selecciona la cantidad de pokemons por vista:</label>
+<select id="lista" name="lista">
+    <option value="12">Selecciona un valor</option>
+    <option value="9">9</option>
+    <option value="18">18</option>
+    <option value="27">27</option>
+    <option value="36">36</option>
+    <option value="45">45</option>
+    <option value="54">54</option>
+    <option value="63">63</option>
+    <option value="72">72</option>
+    <option value="81">81</option>
+    <option value="90">90</option>
+</select>
+
+
+
+@* <div class="container">
+    <div id="pokemon-container" class="row"></div>
+    <div class="d-flex justify-content-center mt-3">
+        <button id="prev" class="btn btn-secondary me-2">Anterior</button>
+        <span id="page-number" class="align-self-center">1</span>
+        <button id="next" class="btn btn-secondary ms-2">Siguiente</button>
+    </div>
+</div>
+
+
+ *@
+
+
+    <!-- CREATE TABLE TO SORT CARDS ON PAGE -->
+    <table class="organizecards" id="datos-container">
+        <!-- NEW ROW -->
+
+    </table>
+
+<!-- From Uiverse.io by vamsidevendrakumar -->
+
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+<script>
+
+    $(document).ready(function () {
+
+            
+
+            // console.log("Valor: " + valorSeleccionado);
+            let paginaActual = 1;
+               let valorSeleccionado =12;
+       
+            function cargarDatos() {
+  
+                const offset = (paginaActual - 1) * valorSeleccionado;
+                $("#datos-container").empty();
+                $.ajax({
+                    url: `https://pokeapi.co/api/v2/pokemon?limit=${valorSeleccionado}&offset=${offset}`,
+                    dataType: 'json',
+                    method: 'GET',
+                    success: function (data) {
+                        data.results.forEach(pokemon => {
+                            $.ajax({
+                                url: pokemon.url,
+                                dataType: 'json',
+                                method: 'GET',
+                                success: function (pokeData) {
+                                    const Tipos = {
+                                        grass: "green", fire: "redorange", water: "blue", electric: "yellow",
+                                        bug: "pistache", ground: "tierra", poison: "morado", fairy: "rosa",
+                                        psychic: "rosa2", rock: "naranja2", fighting: "gris2", ghost: "morado2",
+                                        dark: "dark", ice: "azul2", dragon: "amarillo2", normal: "white"
+                                    };
+
+                                    let tipo = pokeData.types[0].type.name;
+                                    let color = Tipos[tipo] || "gray";
+
+                                    let card = `
+                        <tr>
+                        <!---------------BEGIN PIKACHU--------------->
+                        <td class="organizecardsB">
+                            <div class="nameimageinfo ${color} card-img">
+                                <!-- Name and basic stats -->
+                                <table class="nameheaders">
+
+                                    <tr>
+                                        <td class="basic" colspan="3"> ${pokeData.types[0].type.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="nameofanimal">${pokeData.name}</td>
+                                        <td class="hp">${pokeData.base_experience} Exp</td>
+                                    </tr>
+                                </table>
+                                <!-- Image and description -->
+                                <div class="card  ${color}">
+                                    <div class="card-inner">
+                                        <div class="card-front ${color}">
+                                            <div class="card-img">
+                                                <img src="${pokeData.sprites.other.dream_world.front_default}" alt="Pikachu">
+
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <div class="card-back  ${color}">
+
+                                            <div class="card-img">
+                                                <img src="${pokeData.sprites.other.showdown.front_default}" alt="Pikachu">
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                        <!-- Border around the animal's information per requirement -->
+                        <div class="infoonly">
+                            <!-- "interesting fact" -->
+                            <p class="description">
+                                Mouse Pokémon. Length: ${pokeData.height}' , Weight: ${pokeData.weight} lbs.
+                            </p>
+                            <!-- Attacks -->
+                            <table class="stats">
+                                <tr>
+                                    <td class="attackdescCENTER"><span class="label">${pokeData.abilities[0].ability.name} </span></td>
+                                </tr>
+                            </table>
+                            <table class="stats">
+                                <tr>
+                                    <td class="attackdesc"><span class="label">Generación</span> <span class="labeltext">${pokeData.past_abilities[0].generation.name}</span></td>
+                                </tr>
+                            </table>
+                            <table class="costs">
+                                <tr class="costheaders">
+                                    <td>weakness</td>
+                                    <td>resistance</td>
+                                    <td>retreat cost</td>
+                                </tr>
+
+                            </table>
+                            <!-- Bottom Description -->
+                            <!-- This is the list for the purposes of following the exercise instructions to have a list :D -->
+                            <ul>
+                                <!-- "interesting fact" -->
+                                <li class="italicize">When several of these Pokémon gather, their electricity could build and cause lightning storms. &nbsp; Pokemon &nbsp; #${pokeData.id} </li>
+                                <li class="copyrights"><br><span class="strong">Illus Mitsuhiro Arita</strong> <span class="medium">©1995, 96, 98 Nintendo Creatures, GAMEFREAK ©1999 Wizards</span> <span class="strong">58/102 </strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+                 <div class="card-back">
+                    <p>Back Side</p>
+                </div>
+                                   `;
+                                    $("#datos-container").append(card);
+
+
+                                }
+                            });
+                        });
+                        document.getElementById('numero-pagina').innerText = paginaActual;
+                    }
+                });
+            }
+
+            document.getElementById('btn-siguiente').addEventListener('click', () => {
+                paginaActual++;
+                if (paginaActual > 1) {
+                    const miBoton = document.getElementById("btn-anterior");
+                    miBoton.disabled = false;
+
+                }
+
+                cargarDatos();
+            });
+
+            document.getElementById('btn-anterior').addEventListener('click', () => {
+                if (paginaActual > 1) {
+                    paginaActual--;
+                    cargarDatos();
+                }
+
+                if (paginaActual == 1) {
+                    const ola = document.getElementById("btn-anterior");
+                    ola.disabled = true;
+                }
+
+            });
+
+              $('#lista').on('change', function () {
+              valorSeleccionado = $("#lista").val();
+              paginaActual = 1;
+                  cargarDatos();
+              });
+
+      
+                    cargarDatos();
+
+
+      
+    });
+</script>
+@* <div class="card">
+    <div class="card-inner">
+        <div class="card-front">
+            <p>Front Side</p>
+        </div>
+        <div class="card-back">
+            <p>Back Side</p>
+        </div>
+    </div>
+</div> *@
+@* 
+
+<!-- From Uiverse.io by vamsidevendrakumar -->
+<div class="card">
+    <div class="card-inner">
+        <div class="card-front ${color} card-img">
+            <div class="card-img ">
+                <img src="${pokeData.sprites.other.showdown.front_default}" alt="Pikachu">
+
+            </div>
+        </div>
+        <div class="card-back">
+            <tr>
+
+                <!---------------BEGIN PIKACHU--------------->
+                <td class="organizecardsB">
+                    <div class="nameimageinfo ${color} card-img">
+                        <!-- Name and basic stats -->
+                        <table class="nameheaders">
+
+                            <tr>
+                                <td class="basic" colspan="3"> ${pokeData.types[0].type.name}</td>
+                            </tr>
+                            <tr>
+                                <td class="nameofanimal">${pokeData.name}</td>
+                                <td class="hp">${pokeData.base_experience} Exp</td>
+                            </tr>
+                        </table>
+                        <!-- Image and description -->
+
+                        <div class="card-img">
+                            <img src="${pokeData.sprites.other.dream_world.front_default}" alt="Pikachu">
+
+                        </div>
+                        <br>
+
+                        <!-- Border around the animal's information per requirement -->
+                        <div class="infoonly">
+                            <!-- "interesting fact" -->
+                            <p class="description">
+                                Mouse Pokémon. Length: ${pokeData.height}' , Weight: ${pokeData.weight} lbs.
+                            </p>
+                            <!-- Attacks -->
+                            <table class="stats">
+                                <tr>
+                                    <td class="attackdescCENTER"><span class="label">${pokeData.abilities[0].ability.name}</span></td>
+                                </tr>
+                            </table>
+                            <table class="stats">
+                                <tr>
+                                    <td class="attackdesc"><span class="label">Generación</span> <span class="labeltext">${pokeData.past_abilities[0].generation.name}.</span></td>
+                                </tr>
+                            </table>
+                            <table class="costs">
+                                <tr class="costheaders">
+                                    <td>weakness</td>
+                                    <td>resistance</td>
+                                    <td>retreat cost</td>
+                                </tr>
+
+                            </table>
+                            <!-- Bottom Description -->
+                            <!-- This is the list for the purposes of following the exercise instructions to have a list :D -->
+                            <ul>
+                                <!-- "interesting fact" -->
+                                <li class="italicize">When several of these Pokémon gather, their electricity could build and cause lightning storms. &nbsp; Pokemon &nbsp; #${pokeData.id} </li>
+                                <li class="copyrights"><br><span class="strong">Illus Mitsuhiro Arita</strong> <span class="medium">©1995, 96, 98 Nintendo Creatures, GAMEFREAK ©1999 Wizards</span> <span class="strong">58/102 </strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </div>
+    </div>
+</div>
+ *@
+
+

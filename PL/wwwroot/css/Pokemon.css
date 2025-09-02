@@ -1,0 +1,892 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+
+
+
+/* 
+NOTES
+"CARDS" DEVELOPED FOR EDUCATIONAL PURPOSES. COPYRIGHTS REMAIN PROPERTY OF THEIR ORIGINAL OWNERS.
+1. This version of the cards uses tables instead of lists, for attacks.
+2. The lists are at the end where the descriptions and copyrights are. Each list element is styled differently.
+3. All four cards are held in an invisible table for organization 
+4. I have it set up where CodePad imports Lato from Google Fonts using a link rel. Lato is a close clone of Gill Sans, which is the real Pokemon card font, but not open source. 
+5. Updated the card sizes after some feedback on the Udacity slack and forums - mah pictures were too big!
+*/
+
+/* OVERALL LOOK AND FEEL */
+
+/* ----- Background of entire page */
+
+
+body {
+    background-color: gray;
+}
+
+/* 
+Use this to test positioning of tables and text. 
+Turn it on by removing comment marks to see 
+*/
+
+/*
+table, td, tr {
+  border: 1px solid magenta;
+}
+*/
+
+/* ----- Arrange card table */
+table.organizecards,
+td.organizecardsB, #pokemon-container, #datos-container {
+    border: 20px solid gray;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-collapse: separate;
+    border-spacing: 200px;
+}
+
+/* Font of entire page */
+* {
+    font-family: "Lato", "Gill Sans", "Gill Sans MT", sans-serif;
+    font-stretch: ultra-condensed;
+}
+
+/* ----- Backgrounds of different card types */
+div.blue {
+    /* blue card background - WATER TYPE */
+    background: linear-gradient( to bottom right, #d9e4ec, #adc1d1, #7d99af, #557792, #7d99af, #adc1d1 );
+}
+
+div.yellow {
+    /* yellow card background - ELECTRIC TYPE */
+    background: linear-gradient( to bottom right, #ffffa4, #fff870, #fff200, #fff870, #ffffa4, #fff870 );
+}
+
+div.redorange {
+    /* red and orange card background - FIRE TYPE */
+    background: linear-gradient( to bottom right, #ffbfba, #ff978f, #ff756b, #ff594c, #ff756b, #ff978f );
+}
+
+div.green {
+    /* green card background - GRASS TYPE */
+    background: linear-gradient( to bottom right, #aae5b7, #78cf8b, #4fb665, #319d49, #4fb665, #78cf8b );
+}
+div.white {
+    /* green card background - GRASS TYPE */
+    background: linear-gradient( to bottom right, #F2F2F2, #E6E6E6, #C4C4C4, #ADADAD, #F2F2F2, #E6E6E6 );
+}
+
+
+div.pistache {
+    /* green card background - GRASS TYPE */
+    background: linear-gradient( to bottom right, #A9E0AC, #87D48C, #70CC76, #44BB4C, #A9E0AC, #379A3E);
+}
+
+div.tierra {
+    /* green card background - GRASS TYPE */
+    background: linear-gradient( to bottom right, #EEE1C9, #E2CEA6, #D9BE89, #CCA861, #EEE1C9, #C1953E);
+}
+
+div.morado {
+    /* green card background - GRASS TYPE */
+    background: linear-gradient( to bottom right, #D2A9E0, #C187D4, #B570CC, #9D44BB, #D2A9E0, #81379A);
+}
+div.rosa {
+    /* green card background - GRASS TYPE */
+    background: linear-gradient( to bottom right, #F6C1E1, #F099CE, #E868B6, #E449A9, #F6C1E1, #DE2196);
+}
+
+
+div.rosa2 {
+    background: linear-gradient( to bottom right, #E279B8, #D954A4, #D12E90, #AB2676, #E279B8, #942166);
+}
+div.naranja2 {
+    background: linear-gradient( to bottom right, #FFDA76, #FFD35C, #FFC72E, #FFBB00, #FFDA76, #D19900);
+}
+div.gris2 {
+    background: linear-gradient( to bottom right, #D3DEE4, #C2D1D9, #9BB3C0, #7E9EAE, #D3DEE4, #517081);
+}
+div.morado2 {
+    background: linear-gradient( to bottom right, #CBC3F4, #9F90EA, #8876E5, #674FDE, #CBC3F4, #4629D6);
+}
+div.azul2 {
+    background: linear-gradient( to bottom right, #B8FFFF, #9AFFFF, #5CFFFF, #2EFFFF, #B8FFFF, #00FFFF);
+}
+div.amarillo2 {
+    background: linear-gradient( to bottom right, #F9DB5C, #F8D435, #F6CB09, #CAA607, #F9DB5C, #F8D435);
+}
+
+div.dark {
+    background: linear-gradient( to bottom right, #87A2FF, #B8C7FF, #5C7FFF, #2E5BFF, #87A2FF, #0037FF);
+}
+
+/*//DRagon amarillo 2 y dark dark y ice azul2
+*/
+/* Poner los de los otros*/
+/*div.green {*/
+/* green card background - GRASS TYPE */
+/*background: linear-gradient( to bottom right, #aae5b7, #78cf8b, #4fb665, #319d49, #4fb665, #78cf8b );
+}*/
+/* ----- Size and shape of cards, and gold round border
+SERVES AS "Border around name, image and info" */
+div.nameimageinfo {
+    width: 350px;
+    height: 480px;
+    margins: 0px;
+    padding: 5px 10px 5px 10px;
+    border: 10px solid gold;
+    border-radius: 20px;
+}
+
+/* Border around animal's information to comply with requirements */
+div.infoonly {
+/*    border: 1px dotted gray;
+*/    height: 240px;
+    border-radius: 5px;
+    border-opacity: 50%;
+}
+
+/* Forcing tables to the same full width */
+table.nameheaders,
+table.stats,
+table.costs {
+    width: 310px;
+    vertical-align: center;
+}
+
+/* NAME AND BASIC STATS */
+
+/* ----- "Basic Pokemon" font styling */
+td.basic {
+    font-size: 9px;
+    font-weight: 600;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* ----- Name of Pokemon font styling */
+td.nameofanimal {
+    font-weight: 700;
+    font-size: 20px;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* ----- HP font styling */
+td.hp {
+    color: crimson;
+    font-size: 18px;
+    text-align: right;
+    font-weight: 600;
+    width: 50px;
+}
+
+/* ----- Type sign next to HP - OK to remove if replaced with image */
+td.typesign {
+    font-size: 20px;
+    text-align: center;
+    width: 20px;
+}
+
+/* IMAGE AND DESCRIPTION */
+
+/* ----- Image border and drop shadow */
+img {
+    padding: 0px;
+    margin: 0px 0px 5px 0px;
+    border: 5px yellow outset;
+    box-shadow: 3px 3px 10px #000;
+    /* Ensure the images are always correct size
+ Note this will skew images of the wrong ratio */
+    width: 300px;
+    height: 190px;
+}
+
+/* Description font styling and gradient box
+this is DIRECTLY UNDER THE IMAGE */
+p.description {
+    /* This is skinnier than the image above it */
+    width: 250px; /* DO NOT REMOVE, HEATHER! */
+    padding: 2px 2px 2px 2px;
+    margin: 0px 0px 5px 30px;
+    background: linear-gradient(to right, goldenrod, yellow, goldenrod);
+    font-size: 10px;
+    font-style: italic;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ATTACKS */
+
+/* ----- Attack Energy Cost - Stars/Energy Cards */
+td.energy {
+    width: 50px;
+    margins: 0px;
+    padding: 0px;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* ----- Cell that holds Attack Name and Description */
+td.attackdesc {
+    margins: 5px;
+    padding: 5px;
+}
+
+/* ----- Cards with no Attack Description have the Attack Name centered
+This is an extra class for those only */
+
+td.attackdescCENTER {
+    text-align: center;
+    margins: 5px;
+    padding: 5px;
+}
+
+/* ----- Attack Name Only */
+span.label {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* ----- Attack Description */
+span.labeltext {
+    font-weight: 400;
+    font-size: 12px;
+}
+
+/* ----- Attack Damage */
+td.damage {
+    font-weight: 400;
+    font-size: 20px;
+    width: 25px;
+    text-align: center;
+}
+
+table.stats {
+    border-bottom: 1.5px solid black;
+}
+
+/* WEAKNESS / RESISTANCE / RETREAT */
+
+/* ----- Styling table overall */
+table.costs {
+    font-size: 10px;
+    text-align: center;
+}
+
+/* ----- Styling headers */
+tr.costheaders {
+    font-weight: 900;
+}
+
+/* ----- Styling icons - OK to remove if using images */
+tr.costicons {
+    font-size: 18px;
+    vertical-align: center;
+    align: center;
+}
+
+/* Comply with requirements by having no bullets */
+ul,
+li {
+    list-style: none;
+    padding: 0px;
+    margins: 0px;
+}
+
+    /* BOTTOM DESCRIPTION */
+
+    /* The bottom description and the copyrights
+are two bullets in a list with different classes
+to style them differently */
+
+    /* Bottom of card just above copyrights */
+    li.italicize {
+        font-style: italic;
+        font-weight: 600;
+        font-size: 10px;
+        border: 1px ridge gold;
+        border-radius: 2px;
+        margin: 5px 0px 0px 0px;
+        padding: 5px 5px 5px 5px;
+        width: 298px;
+        /* Remove comment marks to test size */
+        /* border: 1px solid magenta; */
+    }
+
+    /* COPYRIGHTS */
+    li.copyrights {
+        font-size: 7.2px;
+        text-align: center;
+        padding: 0px;
+        margins: 0px;
+        width: 308px;
+        /* Remove comment marks to test size */
+        /* border: 1px solid magenta; */
+    }
+
+/* Copyright font changes along the line, and I love classes apparently */
+span.medium {
+    font-weight: 500;
+}
+
+span.strong {
+    font-weight: 700;
+}
+
+/* Below is a MODIFIED Reset CSS file
+I was experiencing many issues between browsers with my code's sizing
+Code immediately below is public domain and allows for my work to show as intended */
+
+/* I have modified it to remove styles that I used so they will display properly */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+fieldset,
+form,
+label,
+legend,
+caption,
+tbody,
+tfoot,
+thead,
+th,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+* {
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+        content: "";
+        content: none;
+    }
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.card-img:hover {
+    transform: translateY(-7px);
+    box-shadow: 0px 10px 10px black;
+}
+.card-img {
+    /* clear and add new css */
+    transition: all 0.5s;
+/*    display: flex;
+*/    justify-content: center;
+}
+
+    .card-img .img {
+        /* delete */
+        transform: scale(0.68);
+        position: relative;
+        box-sizing: border-box;
+        width: 100px;
+        height: 100px;
+        border-top-left-radius: 80px 50px;
+        border-top-right-radius: 80px 50px;
+        border: 2px solid black;
+        background-color: #228b22;
+        background-image: linear-gradient(to top,transparent 10px,rgba(0,0,0,0.3) 10px,rgba(0,0,0,0.3) 13px,transparent 13px);
+    }
+
+        .card-img .img::before {
+            /* delete */
+            content: '';
+            position: absolute;
+            width: 65px;
+            height: 110px;
+            margin-left: -32.5px;
+            left: 50%;
+            bottom: -4px;
+            background-repeat: no-repeat;
+            background-image: radial-gradient(ellipse at center,rgba(0,0,0,0.7) 30%,transparent 30%),linear-gradient(to top,transparent 17px,rgba(0,0,0,0.3) 17px,rgba(0,0,0,0.3) 20px,transparent 20px),linear-gradient(to right,black 2px,transparent 2px),linear-gradient(to left,black 2px,transparent 2px),linear-gradient(to top,black 2px,#228b22 2px);
+            background-size: 60% 10%,100% 100%,100% 65%,100% 65%,100% 50%;
+            background-position: center 3px,center bottom,center bottom,center bottom,center bottom;
+            border-radius: 0 0 4px 4px;
+            z-index: 2;
+        }
+
+        .card-img .img::after {
+            /* delete */
+            content: '';
+            position: absolute;
+            box-sizing: border-box;
+            width: 28px;
+            height: 28px;
+            margin-left: -14px;
+            left: 50%;
+            top: -13px;
+            background-repeat: no-repeat;
+            background-image: linear-gradient(80deg,#ffc0cb 45%,transparent 45%),linear-gradient(-175deg,#ffc0cb 45%,transparent 45%),linear-gradient(80deg,rgba(0,0,0,0.2) 51%,rgba(0,0,0,0) 51%),linear-gradient(-175deg,rgba(0,0,0,0.2) 51%,rgba(0,0,0,0) 51%),radial-gradient(circle at center,#ffa6b6 45%,rgba(0,0,0,0.2) 45%,rgba(0,0,0,0.2) 52%,rgba(0,0,0,0) 52%),linear-gradient(45deg,rgba(0,0,0,0) 48%,rgba(0,0,0,0.2) 48%,rgba(0,0,0,0.2) 52%,rgba(0,0,0,0) 52%),linear-gradient(65deg,rgba(0,0,0,0) 48%,rgba(0,0,0,0.2) 48%,rgba(0,0,0,0.2) 52%,rgba(0,0,0,0) 52%),linear-gradient(22deg,rgba(0,0,0,0) 48%,rgba(0,0,0,0.2) 48%,rgba(0,0,0,0.2) 54%,rgba(0,0,0,0) 54%);
+            background-size: 100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 75%,100% 95%,100% 60%;
+            background-position: center center;
+            border-top-left-radius: 120px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 70px;
+            border-top: 2px solid black;
+            border-left: 2px solid black;
+            transform: rotate(45deg);
+            z-index: 1;
+        }
+
+/*
+
+
+codigo de js de los pokemons
+
+
+<script >
+$(document).ready(function () {
+        $.ajax({
+            url: 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0',
+            dataType: 'json',
+            method: 'GET',
+            success: function (data) {
+                for (let i = 0; i < 60; i++) {
+                    var pokemon = data.results[i];
+                          //var tipo = pokeData.types[0].type.name == "grass" ? green : "<i class='bi bi-gender-female'></i>";
+                    $.ajax({
+                        url: pokemon.url,// aqui ponemos la url del pokemon en especificpo
+                        dataType: 'json',
+                        method: 'GET',
+                        success: function (pokeData) {
+                           console.log(pokeData.types[0].type.name);//Para obtner el tipo de pokemon
+                           console.log(pokeData.weight); //Weigh
+                           console.log(pokeData.height); //heigth
+                           console.log(pokeData.abilities[0].ability.name); //habilidad
+                           console.log(pokeData.past_abilities[0].generation.name); //generacion
+                           //console.log(pokeData.sprites.other.dream_world.front_default); //generacion
+
+                           //DRagon amarillo 2 y dark dark y ice azul2
+                               const Tipos = { 
+                                   grass: "green",    fire: "redorange",    water: "blue",electric: "yellow",bug:"pistache",ground:"tierra",poison:"morado", fairy:"rosa",psychic:"rosa2",rock:"naranja2",fighting:"gris2",ghost:"morado2",dark:"dark",ice:"azul2",dragon:"amarillo2"
+                               , normal:"white"};
+
+    
+                                   var tipo = pokeData.types[0].type.name;
+  
+                                   color = Tipos[tipo] || "gray";
+                           var ola;
+                            var fila = `
+
+                         
+                               <tr>
+                <!---------------BEGIN PIKACHU--------------->
+                <td class="organizecardsB">
+                    <div class="nameimageinfo ${color} card-img">
+                        <!-- Name and basic stats -->
+                        <table class="nameheaders">
+
+                            <tr>
+                                <td class="basic" colspan="3"> ${pokeData.types[0].type.name}</td>
+                            </tr>
+                            <tr>
+                                <td class="nameofanimal">${pokeData.name}</td>
+                                <td class="hp">${pokeData.base_experience} Exp</td>
+                            </tr>
+                        </table>
+                        <!-- Image and description -->
+                        <div class="card  ${color}">
+                            <div class="card-inner">
+                                <div class="card-front ${color}">
+                                    <div class="card-img">
+                                        <img src="${pokeData.sprites.other.dream_world.front_default}" alt="Pikachu">
+
+                                    </div>
+                                    <br>
+                                </div>
+                                <div class="card-back  ${color}">
+
+                                    <div class="card-img">
+                                        <img src="${pokeData.sprites.other.showdown.front_default}" alt="Pikachu">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+         
+            
+                <!-- Border around the animal's information per requirement -->
+                <div class="infoonly">
+                    <!-- "interesting fact" -->
+                    <p class="description">
+                        Mouse Pokémon. Length: ${pokeData.height}' , Weight: ${pokeData.weight} lbs.
+                    </p>
+                    <!-- Attacks -->
+                    <table class="stats">
+                        <tr>
+                            <td class="attackdescCENTER"><span class="label">${pokeData.abilities[0].ability.name},${pokeData.abilities[1].ability.name} </span></td>
+                        </tr>
+                    </table>
+                    <table class="stats">
+                        <tr>
+                            <td class="attackdesc"><span class="label">Generación</span> <span class="labeltext">${pokeData.past_abilities[0].generation.name}.</span></td>
+                        </tr>
+                    </table>
+                    <table class="costs">
+                        <tr class="costheaders">
+                            <td>weakness</td>
+                            <td>resistance</td>
+                            <td>retreat cost</td>
+                        </tr>
+
+                    </table>
+                    <!-- Bottom Description -->
+                    <!-- This is the list for the purposes of following the exercise instructions to have a list :D -->
+                    <ul>
+                        <!-- "interesting fact" -->
+                        <li class="italicize">When several of these Pokémon gather, their electricity could build and cause lightning storms. &nbsp; Pokemon &nbsp; #${pokeData.id} </li>
+                        <li class="copyrights"><br><span class="strong">Illus Mitsuhiro Arita</strong> <span class="medium">©1995, 96, 98 Nintendo Creatures, GAMEFREAK ©1999 Wizards</span> <span class="strong">58/102 </strong></li>
+                    </ul>
+                </div>
+            </div>
+        </td>
+    </tr>
+         <div class="card-back">
+            <p>Back Side</p>
+        </div>
+    `;
+                            $('#EFE').append(fila);
+                        }
+                    });
+                }
+            }
+        });
+    });
+</script >
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////////////
+
+    
+
+    // $(document).ready(function () {
+    //     $.ajax({
+    //         url: 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0',
+    //         dataType: 'json',
+    //         method: 'GET',
+    //         success: function (data) {
+    //             for (let i = 0; i < 60; i++) {
+    //                 var pokemon = data.results[i];
+    //                       //var tipo = pokeData.types[0].type.name == "grass" ? green : "<i class='bi bi-gender-female'></i>";
+    //                 $.ajax({
+    //                     url: pokemon.url,// aqui ponemos la url del pokemon en especificpo
+    //                     dataType: 'json',
+    //                     method: 'GET',
+    //                     success: function (pokeData) {
+    //                        console.log(pokeData.types[0].type.name);//Para obtner el tipo de pokemon
+    //                        console.log(pokeData.weight); //Weigh
+    //                        console.log(pokeData.height); //heigth
+    //                        console.log(pokeData.abilities[0].ability.name); //habilidad
+    //                        console.log(pokeData.past_abilities[0].generation.name); //generacion
+    //                        //console.log(pokeData.sprites.other.dream_world.front_default); //generacion
+
+    //                        //DRagon amarillo 2 y dark dark y ice azul2
+    //                            const Tipos = { 
+    //                                grass: "green",    fire: "redorange",    water: "blue",electric: "yellow",bug:"pistache",ground:"tierra",poison:"morado", fairy:"rosa",psychic:"rosa2",rock:"naranja2",fighting:"gris2",ghost:"morado2",dark:"dark",ice:"azul2",dragon:"amarillo2"
+    //                            , normal:"white"};
+
+
+    //                                var tipo = pokeData.types[0].type.name;
+
+    //                                color = Tipos[tipo] || "gray";
+    //                        var ola;
+    //                         var fila = `
+
+
+    //                            <tr>
+    //             <!---------------BEGIN PIKACHU--------------->
+    //             <td class="organizecardsB">
+    //                 <div class="nameimageinfo ${color} card-img">
+    //                     <!-- Name and basic stats -->
+    //                     <table class="nameheaders">
+
+    //                         <tr>
+    //                             <td class="basic" colspan="3"> ${pokeData.types[0].type.name}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td class="nameofanimal">${pokeData.name}</td>
+    //                             <td class="hp">${pokeData.base_experience} Exp</td>
+    //                         </tr>
+    //                     </table>
+    //                     <!-- Image and description -->
+    //                     <div class="card  ${color}">
+    //                         <div class="card-inner">
+    //                             <div class="card-front ${color}">
+    //                                 <div class="card-img">
+    //                                     <img src="${pokeData.sprites.other.dream_world.front_default}" alt="Pikachu">
+
+    //                                 </div>
+    //                                 <br>
+    //                             </div>
+    //                             <div class="card-back  ${color}">
+
+    //                                 <div class="card-img">
+    //                                     <img src="${pokeData.sprites.other.showdown.front_default}" alt="Pikachu">
+
+    //                                 </div>
+
+    //                             </div>
+    //                         </div>
+    //                     </div>
+
+
+    //             <!-- Border around the animal's information per requirement -->
+    //             <div class="infoonly">
+    //                 <!-- "interesting fact" -->
+    //                 <p class="description">
+    //                     Mouse Pokémon. Length: ${pokeData.height}' , Weight: ${pokeData.weight} lbs.
+    //                 </p>
+    //                 <!-- Attacks -->
+    //                 <table class="stats">
+    //                     <tr>
+    //                         <td class="attackdescCENTER"><span class="label">${pokeData.abilities[0].ability.name},${pokeData.abilities[1].ability.name} </span></td>
+    //                     </tr>
+    //                 </table>
+    //                 <table class="stats">
+    //                     <tr>
+    //                         <td class="attackdesc"><span class="label">Generación</span> <span class="labeltext">${pokeData.past_abilities[0].generation.name}.</span></td>
+    //                     </tr>
+    //                 </table>
+    //                 <table class="costs">
+    //                     <tr class="costheaders">
+    //                         <td>weakness</td>
+    //                         <td>resistance</td>
+    //                         <td>retreat cost</td>
+    //                     </tr>
+
+    //                 </table>
+    //                 <!-- Bottom Description -->
+    //                 <!-- This is the list for the purposes of following the exercise instructions to have a list :D -->
+    //                 <ul>
+    //                     <!-- "interesting fact" -->
+    //                     <li class="italicize">When several of these Pokémon gather, their electricity could build and cause lightning storms. &nbsp; Pokemon &nbsp; #${pokeData.id} </li>
+    //                     <li class="copyrights"><br><span class="strong">Illus Mitsuhiro Arita</strong> <span class="medium">©1995, 96, 98 Nintendo Creatures, GAMEFREAK ©1999 Wizards</span> <span class="strong">58/102 </strong></li>
+    //                 </ul>
+    //             </div>
+    //         </div>
+    //     </td>
+    // </tr>
+    //      <div class="card-back">
+    //         <p>Back Side</p>
+    //     </div>
+    // `;
+    //                         $('#EFE').append(fila);
+    //                     }
+    //                 });
+    //             }
+    //         }
+    //     });
+    // });
+
+
+    //////////////////
+    
+@* <script>
+    let currentPage = 1;
+    const limit = 50;
+
+    function loadPokemon(page) {
+        let offset = (page - 1) * limit;
+
+        $("#pokemon-container").empty();
+
+        $.ajax({
+            url: `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`,
+            dataType: 'json',
+            method: 'GET',
+            success: function (data) {
+                data.results.forEach(pokemon => {
+                    $.ajax({
+                        url: pokemon.url,
+                        dataType: 'json',
+                        method: 'GET',
+                        success: function (pokeData) {
+                            const Tipos = {
+                                grass: "green", fire: "redorange", water: "blue", electric: "yellow",
+                                bug: "pistache", ground: "tierra", poison: "morado", fairy: "rosa",
+                                psychic: "rosa2", rock: "naranja2", fighting: "gris2", ghost: "morado2",
+                                dark: "dark", ice: "azul2", dragon: "amarillo2", normal: "white"
+                            };
+
+                            let tipo = pokeData.types[0].type.name;
+                            let color = Tipos[tipo] || "gray";
+
+                            let card = `
+                                <div class="col-md-4 mb-4">
+                                    <div class="nameimageinfo ${color}">
+                                        <h5>${pokeData.name}</h5>
+                                        <img src="${pokeData.sprites.other.dream_world.front_default}" alt="${pokeData.name}" style="width:100px;">
+                                        <p>Altura: ${pokeData.height} | Peso: ${pokeData.weight}</p>
+                                        <p>Habilidad: ${pokeData.abilities[0].ability.name}</p>
+                                    </div>
+                                </div>
+                            `;
+                            $("#pokemon-container").append(card);
+                        }
+                    });
+                });
+
+                $("#page-number").text(page);
+            }
+        });
+    }
+
+    $("#next").click(function () {
+        currentPage++;
+        loadPokemon(currentPage);
+    });
+
+    $("#prev").click(function () {
+        if (currentPage > 1) {
+            currentPage--;
+            loadPokemon(currentPage);
+        }
+    });
+
+    loadPokemon(currentPage);
+</script>
+ *@
+
+
+
+
+
+*/
